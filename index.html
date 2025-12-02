@@ -1,1265 +1,1205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>KAIVAL KRUPA ELECTRIC BIKE WORLD</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    :root {
-      --bg-dark: #05060a;
-      --bg-card: #111827;
-      --accent: #22c55e;
-      --accent-soft: rgba(34, 197, 94, 0.12);
-      --accent-2: #38bdf8;
-      --text-main: #e5e7eb;
-      --text-muted: #9ca3af;
-      --danger: #f97373;
-      --border-subtle: #1f2937;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", sans-serif;
-    }
-
-    body {
-      background: radial-gradient(circle at top, #0f172a 0, #020617 60%);
-      color: var(--text-main);
-      min-height: 100vh;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1.25rem;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(16px);
-      background: rgba(15, 23, 42, 0.9);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.6rem 1.25rem;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .brand-logo {
-      width: 40px;
-      height: 40px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #22c55e, #0f172a);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 1rem;
-      color: #ecfeff;
-      box-shadow: 0 0 20px rgba(34, 197, 94, 0.6);
-    }
-
-    .brand-text-main {
-      font-weight: 700;
-      font-size: 1.05rem;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-    }
-
-    .brand-text-sub {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 0.75rem;
-      align-items: center;
-      font-size: 0.9rem;
-    }
-
-    .nav-links button {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      cursor: pointer;
-      padding: 0.35rem 0.7rem;
-      border-radius: 999px;
-      transition: all 0.2s;
-      font-size: 0.85rem;
-    }
-
-    .nav-links button:hover {
-      color: var(--text-main);
-      background: rgba(148, 163, 184, 0.15);
-    }
-
-    .pill {
-      background: var(--accent-soft);
-      color: var(--accent);
-      border-radius: 999px;
-      padding: 0.25rem 0.75rem;
-      border: 1px solid rgba(34, 197, 94, 0.5);
-      font-size: 0.75rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    main {
-      padding: 1.25rem;
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: 3fr 1.3fr;
-      gap: 1.25rem;
-    }
-
-    @media (max-width: 900px) {
-      .layout {
-        grid-template-columns: 1fr;
-      }
-      .nav {
-        flex-wrap: wrap;
-        gap: 0.5rem;
-      }
-    }
-
-    .card {
-      background: radial-gradient(circle at top left, #020617, #020617 30%, #020617);
-      border-radius: 1.3rem;
-      padding: 1.1rem 1.2rem;
-      border: 1px solid var(--border-subtle);
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.85);
-    }
-
-    .card-header-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 0.7rem;
-    }
-
-    .hero-title {
-      font-size: 1.4rem;
-      font-weight: 700;
-      display: flex;
-      align-items: baseline;
-      gap: 0.4rem;
-    }
-
-    .hero-highlight {
-      color: var(--accent-2);
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
-
-    .hero-sub {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      margin-top: 0.2rem;
-    }
-
-    .stats-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      margin-top: 0.7rem;
-      font-size: 0.75rem;
-    }
-
-    .stat-pill {
-      padding: 0.25rem 0.6rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      color: var(--text-muted);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .search-row {
-      margin-top: 0.85rem;
-      display: flex;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .search-input-wrap {
-      position: relative;
-      flex: 1;
-      min-width: 180px;
-    }
-
-    .search-input-wrap input {
-      width: 100%;
-      padding: 0.55rem 0.9rem 0.55rem 2.1rem;
-      border-radius: 999px;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: rgba(15, 23, 42, 0.95);
-      color: var(--text-main);
-      font-size: 0.85rem;
-      outline: none;
-    }
-
-    .search-input-wrap input::placeholder {
-      color: #6b7280;
-    }
-
-    .search-icon {
-      position: absolute;
-      top: 50%;
-      left: 0.7rem;
-      transform: translateY(-50%);
-      font-size: 0.85rem;
-      color: #6b7280;
-    }
-
-    .category-select {
-      padding: 0.5rem 0.8rem;
-      border-radius: 999px;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: rgba(15, 23, 42, 0.95);
-      color: var(--text-main);
-      font-size: 0.8rem;
-    }
-
-    .products-grid {
-      margin-top: 1rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 0.85rem;
-    }
-
-    .product-card {
-      background: linear-gradient(145deg, #020617, #020617 55%, #04101a);
-      border-radius: 1rem;
-      padding: 0.7rem;
-      border: 1px solid #111827;
-      display: flex;
-      flex-direction: column;
-      gap: 0.45rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .product-image-wrap {
-      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.3), #020617 70%);
-      border-radius: 0.8rem;
-      height: 120px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      margin-bottom: 0.3rem;
-    }
-
-    .product-image-wrap img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-    }
-
-    .product-category {
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--accent-2);
-    }
-
-    .product-name {
-      font-size: 0.9rem;
-      font-weight: 600;
-    }
-
-    .product-desc {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      min-height: 2.2em;
-    }
-
-    .product-bottom-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 0.3rem;
-    }
-
-    .product-price {
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: var(--accent);
-    }
-
-    .btn {
-      border-radius: 999px;
-      border: none;
-      padding: 0.4rem 0.9rem;
-      font-size: 0.78rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      font-weight: 500;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #22c55e, #16a34a);
-      color: #022c22;
-      box-shadow: 0 0 18px rgba(34, 197, 94, 0.35);
-    }
-
-    .btn-primary:active {
-      transform: translateY(1px);
-      box-shadow: 0 0 8px rgba(34, 197, 94, 0.45);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--accent);
-      border: 1px solid rgba(34, 197, 94, 0.5);
-    }
-
-    .btn-sm {
-      padding: 0.3rem 0.7rem;
-      font-size: 0.72rem;
-    }
-
-    .cart-card {
-      position: sticky;
-      top: 72px;
-    }
-
-    .cart-title {
-      font-size: 1rem;
-      font-weight: 600;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .cart-items {
-      margin-top: 0.7rem;
-      max-height: 260px;
-      overflow-y: auto;
-      padding-right: 0.1rem;
-    }
-
-    .cart-item {
-      padding: 0.45rem 0.35rem;
-      border-radius: 0.7rem;
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid #111827;
-      margin-bottom: 0.4rem;
-      font-size: 0.78rem;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 0.35rem;
-      align-items: center;
-    }
-
-    .cart-item-main {
-      display: flex;
-      flex-direction: column;
-      gap: 0.15rem;
-    }
-
-    .cart-item-name {
-      font-weight: 500;
-    }
-
-    .cart-item-meta {
-      color: var(--text-muted);
-      font-size: 0.7rem;
-    }
-
-    .cart-item-actions {
-      text-align: right;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 0.2rem;
-    }
-
-    .qty-input {
-      width: 48px;
-      padding: 0.22rem 0.3rem;
-      border-radius: 999px;
-      border: 1px solid #374151;
-      background: #020617;
-      color: var(--text-main);
-      font-size: 0.72rem;
-      text-align: center;
-      outline: none;
-    }
-
-    .cart-total {
-      border-top: 1px dashed #374151;
-      padding-top: 0.5rem;
-      margin-top: 0.4rem;
-      font-size: 0.86rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .total-label {
-      color: var(--text-muted);
-    }
-
-    .total-value {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
-
-    .checkout-form {
-      margin-top: 0.6rem;
-      display: grid;
-      gap: 0.4rem;
-      font-size: 0.78rem;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 0.15rem;
-    }
-
-    .field label {
-      color: var(--text-muted);
-      font-size: 0.75rem;
-    }
-
-    .field input,
-    .field textarea {
-      border-radius: 0.8rem;
-      border: 1px solid #374151;
-      padding: 0.4rem 0.6rem;
-      background: #020617;
-      color: var(--text-main);
-      outline: none;
-      font-size: 0.78rem;
-    }
-
-    .field textarea {
-      resize: vertical;
-      min-height: 55px;
-    }
-
-    .helper-text {
-      font-size: 0.7rem;
-      color: var(--text-muted);
-    }
-
-    .status-msg {
-      margin-top: 0.4rem;
-      font-size: 0.78rem;
-    }
-
-    .status-success {
-      color: var(--accent);
-    }
-
-    .status-error {
-      color: var(--danger);
-    }
-
-    .badge {
-      border-radius: 999px;
-      padding: 0.1rem 0.5rem;
-      border: 1px solid #4b5563;
-      font-size: 0.65rem;
-      color: var(--text-muted);
-    }
-
-    .admin-section {
-      margin-top: 1.25rem;
-      display: none;
-    }
-
-    .admin-header-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.5rem;
-      gap: 0.6rem;
-    }
-
-    .admin-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.6fr);
-      gap: 0.8rem;
-    }
-
-    @media (max-width: 900px) {
-      .admin-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .admin-list {
-      max-height: 260px;
-      overflow-y: auto;
-      border-radius: 0.9rem;
-      border: 1px solid #111827;
-      background: rgba(15, 23, 42, 0.9);
-      padding: 0.45rem;
-      font-size: 0.78rem;
-    }
-
-    .admin-item {
-      padding: 0.42rem 0.3rem;
-      border-radius: 0.6rem;
-      border: 1px solid #1f2937;
-      margin-bottom: 0.3rem;
-      display: grid;
-      grid-template-columns: minmax(0, 1.3fr) auto;
-      gap: 0.35rem;
-    }
-
-    .admin-item-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-      align-items: flex-end;
-      justify-content: center;
-    }
-
-    .link-muted {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      cursor: pointer;
-      text-decoration: underline;
-      text-decoration-style: dotted;
-    }
-
-    .footer {
-      margin-top: 1.5rem;
-      padding: 1rem 1.25rem;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      border-top: 1px solid #111827;
-      text-align: center;
-    }
-
-    .mt-1 {
-      margin-top: 0.25rem;
-    }
-    .mt-2 {
-      margin-top: 0.5rem;
-    }
-    .mt-3 {
-      margin-top: 0.75rem;
-    }
-
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAIVAL KRUPA ELECTRIC BIKE WORLD - EV Spare Parts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00d9ff;
+            --secondary: #00ff88;
+            --accent: #ff00ff;
+            --dark: #0a0e27;
+            --darker: #050814;
+            --light: #ffffff;
+            --gray: #8892b0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Header */
+        header {
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary);
+            box-shadow: 0 4px 20px rgba(0, 217, 255, 0.2);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .admin-btn {
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .admin-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 0, 255, 0.5);
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent);
+            color: var(--light);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        /* Banner */
+        .banner {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(0, 255, 136, 0.1));
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner::before {
+            content: '⚡';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.05;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .banner h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 10px rgba(0, 217, 255, 0.5)); }
+            to { filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.8)); }
+        }
+
+        .banner p {
+            font-size: 1.2rem;
+            color: var(--gray);
+        }
+
+        /* Search Bar */
+        .search-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: rgba(10, 14, 39, 0.8);
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            color: var(--light);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .search-bar:focus {
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+        }
+
+        /* Categories */
+        .categories {
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(0, 255, 136, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Products */
+        .products {
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: rgba(10, 14, 39, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.3);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.2), rgba(0, 255, 136, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-desc {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 0.8rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 8px;
+            color: var(--dark);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .add-to-cart:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.5);
+        }
+
+        /* Cart Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--dark);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(0, 217, 255, 0.05);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .quantity-controls {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .qty-btn {
+            background: var(--primary);
+            color: var(--dark);
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .remove-item {
+            background: #ff3366;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            border: none;
+            border-radius: 10px;
+            color: var(--dark);
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        /* Checkout Form */
+        .checkout-form {
+            display: none;
+        }
+
+        .checkout-form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(0, 217, 255, 0.05);
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            color: var(--light);
+            font-size: 1rem;
+        }
+
+        .submit-order {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            border: none;
+            border-radius: 10px;
+            color: var(--dark);
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Thank You Message */
+        .thank-you {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .thank-you.active {
+            display: block;
+        }
+
+        .thank-you h2 {
+            color: var(--secondary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .banner h1 {
+                font-size: 2rem;
+            }
+
+            .banner p {
+                font-size: 1rem;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .cart-item {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 3rem;
+            color: var(--gray);
+        }
+
+        /* Admin Panel */
+        .admin-panel {
+            background: rgba(10, 14, 39, 0.95);
+            border: 2px solid var(--accent);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .admin-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .admin-form input,
+        .admin-form select,
+        .admin-form textarea {
+            padding: 0.8rem;
+            background: rgba(255, 0, 255, 0.05);
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            color: var(--light);
+            font-size: 1rem;
+        }
+
+        .admin-form button {
+            padding: 1rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            border: none;
+            border-radius: 10px;
+            color: var(--light);
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .admin-form button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(255, 0, 255, 0.5);
+        }
+
+        .product-list-admin {
+            margin-top: 2rem;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .product-item-admin {
+            background: rgba(255, 0, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--accent);
+        }
+
+        .product-item-admin button {
+            background: #ff3366;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .product-item-admin button:hover {
+            background: #ff0044;
+            transform: scale(1.05);
+        }
+
+        .icon-selector {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .icon-option {
+            font-size: 2rem;
+            padding: 0.5rem;
+            background: rgba(255, 0, 255, 0.1);
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .icon-option:hover,
+        .icon-option.selected {
+            border-color: var(--accent);
+            background: rgba(255, 0, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(10, 14, 39, 0.95);
+            border: 2px solid var(--accent);
+            border-radius: 20px;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            background: rgba(255, 0, 255, 0.05);
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            color: var(--light);
+            font-size: 1rem;
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            border: none;
+            border-radius: 10px;
+            color: var(--light);
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-<header>
-  <div class="nav container">
-    <div class="brand">
-      <div class="brand-logo">EV</div>
-      <div>
-        <div class="brand-text-main">KAIVAL KRUPA ELECTRIC BIKE WORLD</div>
-        <div class="brand-text-sub">EV Bike Spare Parts • Service • Support</div>
-      </div>
-    </div>
-    <div class="nav-links">
-      <span class="pill">
-        <span>⚡</span>
-        EV Parts Online Store
-      </span>
-      <button type="button" id="navShopBtn">Shop</button>
-      <button type="button" id="navAdminBtn">Admin</button>
-    </div>
-  </div>
-</header>
+    <div class="bg-animation"></div>
 
-<main class="container">
-  <section class="card">
-    <div class="card-header-row">
-      <div>
-        <div class="hero-title">
-          EV Bike Spare Parts
-          <span class="hero-highlight">Fast • Genuine • Ready to Ship</span>
-        </div>
-        <p class="hero-sub">
-          Browse genuine electric bike spare parts, add them to cart and send your order directly on WhatsApp.
-        </p>
-        <div class="stats-row">
-          <div class="stat-pill">🚲 EV Motors & Controllers</div>
-          <div class="stat-pill">🔋 Batteries & Chargers</div>
-          <div class="stat-pill">🛞 Tyres & Brakes</div>
-          <div class="stat-pill">✨ Body & Accessories</div>
-        </div>
-      </div>
-      <div>
-        <span class="badge">WhatsApp Orders: +91 94292 93754</span>
-      </div>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">⚡ KAIVAL KRUPA</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#" id="adminBtn" class="admin-btn">🔐 Admin</a></li>
+                <li><a href="#" id="cartBtn">
+                    <span class="cart-icon">🛒 <span class="cart-count" id="cartCount">0</span></span>
+                </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Banner -->
+    <section class="banner" id="home">
+        <h1>KAIVAL KRUPA ELECTRIC BIKE WORLD</h1>
+        <p>Premium EV Spare Parts & Accessories - Power Your Electric Journey</p>
+    </section>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" class="search-bar" id="searchBar" placeholder="🔍 Search for spare parts...">
     </div>
 
-    <!-- Shop Area -->
-    <div id="shopSection">
-      <div class="search-row">
-        <div class="search-input-wrap">
-          <span class="search-icon">🔍</span>
-          <input id="searchInput" type="text" placeholder="Search spare part by name…" />
+    <!-- Categories -->
+    <section class="categories">
+        <h2 class="section-title">Shop by Category</h2>
+        <div class="category-grid">
+            <div class="category-card" data-category="battery">
+                <div class="category-icon">🔋</div>
+                <h3>Batteries</h3>
+            </div>
+            <div class="category-card" data-category="motor">
+                <div class="category-icon">⚙️</div>
+                <h3>Motors</h3>
+            </div>
+            <div class="category-card" data-category="controller">
+                <div class="category-icon">🎛️</div>
+                <h3>Controllers</h3>
+            </div>
+            <div class="category-card" data-category="charger">
+                <div class="category-icon">🔌</div>
+                <h3>Chargers</h3>
+            </div>
+            <div class="category-card" data-category="tire">
+                <div class="category-icon">🛞</div>
+                <h3>Tires & Tubes</h3>
+            </div>
+            <div class="category-card" data-category="brake">
+                <div class="category-icon">🛑</div>
+                <h3>Brakes</h3>
+            </div>
         </div>
-        <select id="categoryFilter" class="category-select">
-          <option value="all">All Categories</option>
-        </select>
-      </div>
+    </section>
 
-      <div id="productsGrid" class="products-grid mt-3"></div>
+    <!-- Products -->
+    <section class="products" id="products">
+        <h2 class="section-title">Featured Spare Parts</h2>
+        <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeCart">&times;</span>
+            
+            <div id="cartView">
+                <h2 class="section-title">Your Cart</h2>
+                <div id="cartItems"></div>
+                <div style="text-align: right; margin-top: 2rem;">
+                    <h3 style="color: var(--secondary);">Total: ₹<span id="cartTotal">0</span></h3>
+                    <button class="checkout-btn" id="proceedCheckout">Proceed to Checkout</button>
+                </div>
+            </div>
+
+            <div class="checkout-form" id="checkoutForm">
+                <h2 class="section-title">Checkout</h2>
+                <form id="orderForm">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" id="customerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input type="tel" id="customerPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Complete Address *</label>
+                        <textarea id="customerAddress" rows="3" required></textarea>
+                    </div>
+                    <div style="background: rgba(0, 217, 255, 0.1); padding: 1rem; border-radius: 10px; margin-bottom: 1rem;">
+                        <h4 style="color: var(--primary); margin-bottom: 0.5rem;">Order Summary</h4>
+                        <div id="orderSummary"></div>
+                        <h3 style="color: var(--secondary); margin-top: 1rem;">Total: ₹<span id="checkoutTotal">0</span></h3>
+                    </div>
+                    <button type="submit" class="submit-order">Place Order via WhatsApp</button>
+                </form>
+            </div>
+
+            <div class="thank-you" id="thankYou">
+                <h2>✅ Thank You!</h2>
+                <p style="color: var(--gray); font-size: 1.2rem;">Thank you for ordering with KAIVAL KRUPA ELECTRIC BIKE WORLD!</p>
+                <p style="color: var(--gray);">We will contact you soon.</p>
+                <button class="checkout-btn" onclick="location.reload()">Continue Shopping</button>
+            </div>
+        </div>
     </div>
 
-    <!-- Admin Area -->
-    <div id="adminSection" class="admin-section">
-      <div class="admin-header-row">
-        <div>
-          <div class="hero-title" style="font-size: 1.05rem;">
-            Admin Panel
-            <span class="hero-highlight">Manage EV Spare Parts</span>
-          </div>
-          <p class="hero-sub">
-            Add, edit or delete spare parts. Changes are stored in this browser using local storage.
-          </p>
-        </div>
-        <div class="helper-text">
-          🔐 Basic protection only.  
-          For real security, use a backend with authentication.
-        </div>
-      </div>
-
-      <div class="admin-grid">
-        <div class="card" style="padding:0.7rem 0.75rem;">
-          <div style="font-size:0.9rem; font-weight:600; margin-bottom:0.35rem;">
-            Part Details
-          </div>
-          <form id="adminForm" class="checkout-form">
-            <input type="hidden" id="partId" />
-            <div class="field">
-              <label for="partName">Part Name</label>
-              <input id="partName" required />
-            </div>
-            <div class="field">
-              <label for="partCategory">Category</label>
-              <input id="partCategory" placeholder="Motor, Battery, Tyre…" />
-            </div>
-            <div class="field">
-              <label for="partPrice">Price (₹)</label>
-              <input id="partPrice" type="number" min="0" step="1" required />
-            </div>
-            <div class="field">
-              <label for="partImage">Image URL</label>
-              <input id="partImage" placeholder="https://example.com/part.png" />
-              <span class="helper-text">
-                Use a direct image link. You can upload images to any static host and paste the link here.
-              </span>
-            </div>
-            <div class="field">
-              <label for="partDesc">Short Description</label>
-              <textarea id="partDesc" rows="2"></textarea>
+    <!-- Admin Modal -->
+    <div class="modal" id="adminModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeAdmin">&times;</span>
+            
+            <div id="adminLogin">
+                <h2 class="section-title">Admin Login</h2>
+                <div class="login-form">
+                    <input type="password" id="adminPassword" placeholder="Enter Admin Password">
+                    <button onclick="adminLogin()">Login</button>
+                </div>
             </div>
 
-            <div style="display:flex; gap:0.5rem; margin-top:0.3rem;">
-              <button class="btn btn-primary btn-sm" type="submit">
-                💾 Save Part
-              </button>
-              <button class="btn btn-outline btn-sm" type="button" id="adminResetBtn">
-                ✨ Clear Form
-              </button>
-            </div>
-            <div class="helper-text mt-1">
-              Tip: Click "Edit" in the list to modify an existing part.
-            </div>
-          </form>
-        </div>
+            <div id="adminDashboard" style="display: none;">
+                <h2 class="section-title">Admin Panel - Manage Products</h2>
+                <div class="admin-panel">
+                    <form class="admin-form" id="addProductForm">
+                        <h3 style="color: var(--accent);">Add New Product</h3>
+                        
+                        <input type="text" id="productName" placeholder="Product Name *" required>
+                        
+                        <input type="number" id="productPrice" placeholder="Price (₹) *" required>
+                        
+                        <select id="productCategory" required>
+                            <option value="">Select Category *</option>
+                            <option value="battery">Battery</option>
+                            <option value="motor">Motor</option>
+                            <option value="controller">Controller</option>
+                            <option value="charger">Charger</option>
+                            <option value="tire">Tire</option>
+                            <option value="brake">Brake</option>
+                            <option value="lights">Lights</option>
+                            <option value="suspension">Suspension</option>
+                            <option value="accessories">Accessories</option>
+                        </select>
+                        
+                        <textarea id="productDesc" placeholder="Description *" rows="3" required></textarea>
+                        
+                        <label style="color: var(--accent); margin-top: 0.5rem;">Select Icon:</label>
+                        <div class="icon-selector">
+                            <div class="icon-option" data-icon="🔋">🔋</div>
+                            <div class="icon-option" data-icon="⚙️">⚙️</div>
+                            <div class="icon-option" data-icon="🎛️">🎛️</div>
+                            <div class="icon-option" data-icon="🔌">🔌</div>
+                            <div class="icon-option" data-icon="🛞">🛞</div>
+                            <div class="icon-option" data-icon="🛑">🛑</div>
+                            <div class="icon-option" data-icon="💡">💡</div>
+                            <div class="icon-option" data-icon="📊">📊</div>
+                            <div class="icon-option" data-icon="🔑">🔑</div>
+                            <div class="icon-option" data-icon="⛓️">⛓️</div>
+                            <div class="icon-option" data-icon="🔩">🔩</div>
+                            <div class="icon-option" data-icon="🪞">🪞</div>
+                            <div class="icon-option" data-icon="🔧">🔧</div>
+                            <div class="icon-option" data-icon="⚡">⚡</div>
+                            <div class="icon-option" data-icon="🔦">🔦</div>
+                            <div class="icon-option" data-icon="🎯">🎯</div>
+                            <div class="icon-option" data-icon="🚀">🚀</div>
+                            <div class="icon-option" data-icon="⭐">⭐</div>
+                        </div>
+                        <input type="hidden" id="selectedIcon" value="🔋">
+                        
+                        <button type="submit">➕ Add Product</button>
+                    </form>
 
-        <div class="admin-list">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.35rem;">
-            <span style="font-size:0.9rem; font-weight:600;">Spare Parts List</span>
-            <span class="helper-text">Showing all saved parts</span>
-          </div>
-          <div id="adminList"></div>
+                    <div class="product-list-admin">
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;">Existing Products</h3>
+                        <div id="adminProductList"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </section>
 
-  <section class="layout mt-3">
-    <!-- Empty left area just to keep layout balanced on big screens -->
-    <div></div>
+    <script>
+        // Product Data
+        let products = JSON.parse(localStorage.getItem('evProducts')) || [
+            {
+                id: 1,
+                name: "Lithium-Ion Battery 48V 20Ah",
+                price: 12500,
+                category: "battery",
+                desc: "High-capacity battery with long life cycle",
+                icon: "🔋"
+            },
+            {
+                id: 2,
+                name: "BLDC Hub Motor 1000W",
+                price: 8500,
+                category: "motor",
+                desc: "Brushless DC motor with high efficiency",
+                icon: "⚙️"
+            },
+            {
+                id: 3,
+                name: "Smart Controller 48V",
+                price: 3500,
+                category: "controller",
+                desc: "Intelligent motor controller with display",
+                icon: "🎛️"
+            },
+            {
+                id: 4,
+                name: "Fast Charger 48V 5A",
+                price: 2500,
+                category: "charger",
+                desc: "Quick charging with auto cut-off",
+                icon: "🔌"
+            },
+            {
+                id: 5,
+                name: "Tubeless Tire 17-inch",
+                price: 1200,
+                category: "tire",
+                desc: "Puncture-resistant tubeless tire",
+                icon: "🛞"
+            },
+            {
+                id: 6,
+                name: "Hydraulic Disc Brake Set",
+                price: 2800,
+                category: "brake",
+                desc: "Front and rear hydraulic brake system",
+                icon: "🛑"
+            },
+            {
+                id: 7,
+                name: "LED Headlight Assembly",
+                price: 850,
+                category: "lights",
+                desc: "Bright LED headlight with high beam",
+                icon: "💡"
+            },
+            {
+                id: 8,
+                name: "Digital Speedometer",
+                price: 1500,
+                category: "controller",
+                desc: "LCD display with battery indicator",
+                icon: "📊"
+            },
+            {
+                id: 9,
+                name: "Throttle Grip with Lock",
+                price: 450,
+                category: "controller",
+                desc: "Twist throttle with key lock",
+                icon: "🔑"
+            },
+            {
+                id: 10,
+                name: "Chain Drive Kit",
+                price: 950,
+                category: "motor",
+                desc: "Complete chain and sprocket set",
+                icon: "⛓️"
+            },
+            {
+                id: 11,
+                name: "Suspension Spring Set",
+                price: 1800,
+                category: "suspension",
+                desc: "Front and rear suspension springs",
+                icon: "🔩"
+            },
+            {
+                id: 12,
+                name: "Side Mirror Pair",
+                price: 350,
+                category: "accessories",
+                desc: "Adjustable rear-view mirrors",
+                icon: "🪞"
+            }
+        ];
 
-    <!-- Cart & Checkout -->
-    <aside class="card cart-card">
-      <div class="cart-title">
-        <span>🛒 Cart</span>
-        <span id="cartCount" class="badge">0 items</span>
-      </div>
+        let cart = [];
+        let isAdminLoggedIn = false;
+        const ADMIN_PASSWORD = "admin123"; // Change this password for security
 
-      <div id="cartItems" class="cart-items"></div>
-
-      <div class="cart-total">
-        <span class="total-label">Total</span>
-        <span id="cartTotal" class="total-value">₹0</span>
-      </div>
-
-      <form id="checkoutForm" class="checkout-form">
-        <div class="field">
-          <label for="custName">Customer Name</label>
-          <input id="custName" required />
-        </div>
-        <div class="field">
-          <label for="custPhone">Phone Number</label>
-          <input id="custPhone" required placeholder="10-digit mobile number" />
-        </div>
-        <div class="field">
-          <label for="custAddress">Address</label>
-          <textarea id="custAddress" rows="2" required></textarea>
-        </div>
-        <div class="field">
-          <label for="custNote">Additional Note (optional)</label>
-          <textarea id="custNote" rows="2" placeholder="Preferred delivery time, landmark, etc."></textarea>
-        </div>
-        <div class="helper-text">
-          On submit, your order will open in WhatsApp chat to <b>+91 94292 93754</b>.  
-          You can review and send it from WhatsApp.
-        </div>
-
-        <button class="btn btn-primary mt-2" type="submit">
-          📲 Order on WhatsApp
-        </button>
-
-        <div id="statusMsg" class="status-msg"></div>
-      </form>
-    </aside>
-  </section>
-
-  <footer class="footer">
-    © <span id="yearSpan"></span> KAIVAL KRUPA ELECTRIC BIKE WORLD • EV Bike Spare Parts & Service.
-  </footer>
-</main>
-
-<script>
-  // ---------- CONFIG ----------
-  const WHATSAPP_NUMBER = "919429293754"; // Country code + number (no + sign)
-  const STORAGE_KEY_PRODUCTS = "kkebw_products_v1";
-
-  // ---------- STATE ----------
-  let products = [];
-  let cart = [];
-  let adminUnlocked = false;
-
-  // ---------- UTIL ----------
-  function formatCurrency(value) {
-    return "₹" + (value || 0).toLocaleString("en-IN");
-  }
-
-  function saveProductsToStorage() {
-    localStorage.setItem(STORAGE_KEY_PRODUCTS, JSON.stringify(products));
-  }
-
-  function loadProductsFromStorage() {
-    const stored = localStorage.getItem(STORAGE_KEY_PRODUCTS);
-    if (stored) {
-      try {
-        products = JSON.parse(stored);
-      } catch (e) {
-        console.error("Error parsing products from storage", e);
-        products = [];
-      }
-    }
-
-    // seed sample products if empty
-    if (!Array.isArray(products) || products.length === 0) {
-      products = [
-        {
-          id: "P001",
-          name: "48V Hub Motor (1000W)",
-          category: "Motor",
-          price: 8500,
-          image:
-            "https://images.pexels.com/photos/163184/wheel-bike-bicycle-cycling-163184.jpeg?auto=compress&cs=tinysrgb&w=600",
-          desc: "High torque 48V hub motor suitable for most EV bikes."
-        },
-        {
-          id: "P002",
-          name: "Lithium-ion Battery Pack 48V 28Ah",
-          category: "Battery",
-          price: 18500,
-          image:
-            "https://images.pexels.com/photos/1105379/pexels-photo-1105379.jpeg?auto=compress&cs=tinysrgb&w=600",
-          desc: "Long life lithium battery pack with BMS protection."
-        },
-        {
-          id: "P003",
-          name: "Controller 48V/60A (Sine Wave)",
-          category: "Controller",
-          price: 4500,
-          image:
-            "https://images.pexels.com/photos/5721076/pexels-photo-5721076.jpeg?auto=compress&cs=tinysrgb&w=600",
-          desc: "Smooth acceleration with sine wave technology."
-        },
-        {
-          id: "P004",
-          name: "EV Tyre 3.00-10 Tubeless",
-          category: "Tyre",
-          price: 1600,
-          image:
-            "https://images.pexels.com/photos/414916/pexels-photo-414916.jpeg?auto=compress&cs=tinysrgb&w=600",
-          desc: "Heavy duty tyre for electric two-wheelers."
-        },
-        {
-          id: "P005",
-          name: "Disc Brake Kit (Front)",
-          category: "Brake",
-          price: 2100,
-          image:
-            "https://images.pexels.com/photos/102292/pexels-photo-102292.jpeg?auto=compress&cs=tinysrgb&w=600",
-          desc: "Complete front disc brake assembly for EV bikes."
+        // Save products to localStorage
+        function saveProducts() {
+            localStorage.setItem('evProducts', JSON.stringify(products));
         }
-      ];
-      saveProductsToStorage();
-    }
-  }
 
-  function getUniqueCategories() {
-    const set = new Set();
-    products.forEach((p) => {
-      if (p.category && p.category.trim()) {
-        set.add(p.category.trim());
-      }
-    });
-    return Array.from(set);
-  }
+        // Display Products
+        function displayProducts(productsToShow = products) {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = productsToShow.map(p => `
+                <div class="product-card">
+                    <div class="product-image">${p.icon}</div>
+                    <div class="product-info">
+                        <h3 class="product-name">${p.name}</h3>
+                        <div class="product-price">₹${p.price.toLocaleString()}</div>
+                        <p class="product-desc">${p.desc}</p>
+                        <button class="add-to-cart" onclick="addToCart(${p.id})">Add to Cart</button>
+                    </div>
+                </div>
+            `).join('');
+        }
 
-  // ---------- RENDER: PRODUCTS ----------
-  function renderProducts() {
-    const grid = document.getElementById("productsGrid");
-    const searchValue = document
-      .getElementById("searchInput")
-      .value.toLowerCase()
-      .trim();
-    const categoryValue = document.getElementById("categoryFilter").value;
+        // Add to Cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+            
+            updateCartCount();
+            showNotification('Added to cart!');
+        }
 
-    grid.innerHTML = "";
+        // Update Cart Count
+        function updateCartCount() {
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').textContent = count;
+        }
 
-    let filtered = products.filter((p) => {
-      const matchesSearch =
-        !searchValue ||
-        p.name.toLowerCase().includes(searchValue) ||
-        (p.desc && p.desc.toLowerCase().includes(searchValue));
-      const matchesCategory =
-        categoryValue === "all" || p.category === categoryValue;
-      return matchesSearch && matchesCategory;
-    });
+        // Show Cart
+        function showCart() {
+            const modal = document.getElementById('cartModal');
+            const cartView = document.getElementById('cartView');
+            const checkoutForm = document.getElementById('checkoutForm');
+            const thankYou = document.getElementById('thankYou');
+            
+            cartView.style.display = 'block';
+            checkoutForm.classList.remove('active');
+            thankYou.classList.remove('active');
+            
+            if (cart.length === 0) {
+                document.getElementById('cartItems').innerHTML = '<div class="empty-cart"><h3>Your cart is empty</h3></div>';
+            } else {
+                document.getElementById('cartItems').innerHTML = cart.map((item, index) => `
+                    <div class="cart-item">
+                        <div style="font-size: 2rem;">${item.icon}</div>
+                        <div class="cart-item-info">
+                            <h4>${item.name}</h4>
+                            <p style="color: var(--secondary);">₹${item.price.toLocaleString()}</p>
+                        </div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="updateQuantity(${index}, -1)">-</button>
+                            <span style="padding: 0 1rem;">${item.quantity}</span>
+                            <button class="qty-btn" onclick="updateQuantity(${index}, 1)">+</button>
+                        </div>
+                        <button class="remove-item" onclick="removeFromCart(${index})">Remove</button>
+                    </div>
+                `).join('');
+                
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                document.getElementById('cartTotal').textContent = total.toLocaleString();
+            }
+            
+            modal.classList.add('active');
+        }
 
-    if (filtered.length === 0) {
-      grid.innerHTML =
-        '<div style="font-size:0.85rem; color:#9ca3af;">No parts found. Try a different search or category.</div>';
-      return;
-    }
+        // Update Quantity
+        function updateQuantity(index, change) {
+            cart[index].quantity += change;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartCount();
+            showCart();
+        }
 
-    filtered.forEach((p) => {
-      const card = document.createElement("div");
-      card.className = "product-card";
+        // Remove from Cart
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartCount();
+            showCart();
+        }
 
-      card.innerHTML = `
-        <div class="product-image-wrap">
-          ${
-            p.image
-              ? `<img src="${p.image}" alt="${p.name}" onerror="this.style.display='none';" />`
-              : '<span style="font-size:2rem; opacity:0.3;">⚡</span>'
-          }
-        </div>
-        <div class="product-category">${p.category || "EV Part"}</div>
-        <div class="product-name">${p.name}</div>
-        <div class="product-desc">${p.desc || ""}</div>
-        <div class="product-bottom-row">
-          <div class="product-price">${formatCurrency(p.price)}</div>
-          <button class="btn btn-primary btn-sm" type="button" data-id="${
-            p.id
-          }">
-            ➕ Add
-          </button>
-        </div>
-      `;
+        // Proceed to Checkout
+        document.getElementById('proceedCheckout').addEventListener('click', () => {
+            if (cart.length === 0) return;
+            
+            document.getElementById('cartView').style.display = 'none';
+            document.getElementById('checkoutForm').classList.add('active');
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            document.getElementById('checkoutTotal').textContent = total.toLocaleString();
+            
+            document.getElementById('orderSummary').innerHTML = cart.map(item => `
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span>${item.name} x${item.quantity}</span>
+                    <span>₹${(item.price * item.quantity).toLocaleString()}</span>
+                </div>
+            `).join('');
+        });
 
-      const addBtn = card.querySelector("button");
-      addBtn.addEventListener("click", () => addToCart(p.id));
+        // Submit Order
+        document.getElementById('orderForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('customerName').value;
+            const phone = document.getElementById('customerPhone').value;
+            const address = document.getElementById('customerAddress').value;
+            
+            const orderItems = cart.map(item => 
+                `${item.name} x${item.quantity} - ₹${(item.price * item.quantity).toLocaleString()}`
+            ).join('\n');
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            const message = `*New Order – KAIVAL KRUPA ELECTRIC BIKE WORLD*\n\n*Customer Name:* ${name}\n*Phone No:* ${phone}\n*Address:* ${address}\n\n*Items Ordered:*\n${orderItems}\n\n*Total Amount:* ₹${total.toLocaleString()}`;
+            
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=919429293754&text=${encodeURIComponent(message)}`;
+            
+            window.open(whatsappUrl, '_blank');
+            
+            document.getElementById('checkoutForm').classList.remove('active');
+            document.getElementById('thankYou').classList.add('active');
+            
+            cart = [];
+            updateCartCount();
+        });
 
-      grid.appendChild(card);
-    });
-  }
+        // Search Functionality
+        document.getElementById('searchBar').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = products.filter(p => 
+                p.name.toLowerCase().includes(query) || 
+                p.desc.toLowerCase().includes(query)
+            );
+            displayProducts(filtered);
+        });
 
-  function populateCategoryFilter() {
-    const select = document.getElementById("categoryFilter");
-    const cats = getUniqueCategories();
-    select.innerHTML = `<option value="all">All Categories</option>`;
-    cats.forEach((c) => {
-      const opt = document.createElement("option");
-      opt.value = c;
-      opt.textContent = c;
-      select.appendChild(opt);
-    });
-  }
+        // Category Filter
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const category = card.dataset.category;
+                const filtered = products.filter(p => p.category === category);
+                displayProducts(filtered);
+                document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
 
-  // ---------- CART ----------
-  function addToCart(productId) {
-    const product = products.find((p) => p.id === productId);
-    if (!product) return;
-    const existing = cart.find((c) => c.id === productId);
-    if (existing) {
-      existing.qty += 1;
-    } else {
-      cart.push({
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        qty: 1
-      });
-    }
-    renderCart();
-  }
+        // Cart Modal Controls
+        document.getElementById('cartBtn').addEventListener('click', showCart);
+        document.getElementById('closeCart').addEventListener('click', () => {
+            document.getElementById('cartModal').classList.remove('active');
+        });
 
-  function updateCartQty(index, qty) {
-    const val = parseInt(qty, 10);
-    if (isNaN(val) || val <= 0) return;
-    cart[index].qty = val;
-    renderCart();
-  }
+        // Notification
+        function showNotification(message) {
+            const notif = document.createElement('div');
+            notif.textContent = message;
+            notif.style.cssText = 'position: fixed; top: 100px; right: 20px; background: var(--secondary); color: var(--dark); padding: 1rem 2rem; border-radius: 10px; z-index: 3000; font-weight: bold;';
+            document.body.appendChild(notif);
+            setTimeout(() => notif.remove(), 2000);
+        }
 
-  function removeCartItem(index) {
-    cart.splice(index, 1);
-    renderCart();
-  }
+        // Admin Functions
+        function adminLogin() {
+            const password = document.getElementById('adminPassword').value;
+            if (password === ADMIN_PASSWORD) {
+                isAdminLoggedIn = true;
+                document.getElementById('adminLogin').style.display = 'none';
+                document.getElementById('adminDashboard').style.display = 'block';
+                loadAdminProducts();
+                showNotification('Login Successful!');
+            } else {
+                alert('Incorrect password!');
+            }
+        }
 
-  function renderCart() {
-    const container = document.getElementById("cartItems");
-    const countSpan = document.getElementById("cartCount");
-    const totalSpan = document.getElementById("cartTotal");
+        function loadAdminProducts() {
+            const list = document.getElementById('adminProductList');
+            list.innerHTML = products.map(p => `
+                <div class="product-item-admin">
+                    <div>
+                        <span style="font-size: 2rem; margin-right: 1rem;">${p.icon}</span>
+                        <strong style="color: var(--primary);">${p.name}</strong><br>
+                        <span style="color: var(--secondary);">₹${p.price.toLocaleString()}</span> | 
+                        <span style="color: var(--gray);">${p.category}</span>
+                    </div>
+                    <button onclick="deleteProduct(${p.id})">🗑️ Delete</button>
+                </div>
+            `).join('');
+        }
 
-    container.innerHTML = "";
+        function deleteProduct(id) {
+            if (confirm('Are you sure you want to delete this product?')) {
+                products = products.filter(p => p.id !== id);
+                saveProducts();
+                loadAdminProducts();
+                displayProducts();
+                showNotification('Product Deleted!');
+            }
+        }
 
-    if (cart.length === 0) {
-      container.innerHTML =
-        '<div style="font-size:0.8rem; color:#9ca3af;">Your cart is empty. Add some parts to order.</div>';
-      countSpan.textContent = "0 items";
-      totalSpan.textContent = "₹0";
-      return;
-    }
+        // Icon Selection
+        document.querySelectorAll('.icon-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.icon-option').forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                document.getElementById('selectedIcon').value = this.dataset.icon;
+            });
+        });
 
-    let total = 0;
+        // Add Product Form
+        document.getElementById('addProductForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const newProduct = {
+                id: products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1,
+                name: document.getElementById('productName').value,
+                price: parseInt(document.getElementById('productPrice').value),
+                category: document.getElementById('productCategory').value,
+                desc: document.getElementById('productDesc').value,
+                icon: document.getElementById('selectedIcon').value
+            };
 
-    cart.forEach((item, index) => {
-      const lineTotal = item.price * item.qty;
-      total += lineTotal;
+            products.push(newProduct);
+            saveProducts();
+            loadAdminProducts();
+            displayProducts();
+            
+            e.target.reset();
+            document.querySelectorAll('.icon-option').forEach(opt => opt.classList.remove('selected'));
+            document.querySelector('.icon-option').classList.add('selected');
+            
+            showNotification('Product Added Successfully!');
+        });
 
-      const row = document.createElement("div");
-      row.className = "cart-item";
-      row.innerHTML = `
-        <div class="cart-item-main">
-          <div class="cart-item-name">${item.name}</div>
-          <div class="cart-item-meta">
-            ${formatCurrency(item.price)} ×
-            <input class="qty-input" type="number" min="1" value="${
-              item.qty
-            }" />
-          </div>
-        </div>
-        <div class="cart-item-actions">
-          <div>${formatCurrency(lineTotal)}</div>
-          <button type="button" class="btn btn-outline btn-sm">✖ Remove</button>
-        </div>
-      `;
+        // Admin Modal Controls
+        document.getElementById('adminBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('adminModal').classList.add('active');
+            if (isAdminLoggedIn) {
+                document.getElementById('adminLogin').style.display = 'none';
+                document.getElementById('adminDashboard').style.display = 'block';
+                loadAdminProducts();
+            } else {
+                document.getElementById('adminLogin').style.display = 'block';
+                document.getElementById('adminDashboard').style.display = 'none';
+            }
+        });
 
-      const qtyInput = row.querySelector(".qty-input");
-      qtyInput.addEventListener("change", (e) =>
-        updateCartQty(index, e.target.value)
-      );
+        document.getElementById('closeAdmin').addEventListener('click', () => {
+            document.getElementById('adminModal').classList.remove('active');
+        });
 
-      const removeBtn = row.querySelector("button");
-      removeBtn.addEventListener("click", () => removeCartItem(index));
-
-      container.appendChild(row);
-    });
-
-    countSpan.textContent = cart.length + (cart.length === 1 ? " item" : " items");
-    totalSpan.textContent = formatCurrency(total);
-  }
-
-  // ---------- CHECKOUT / WHATSAPP ----------
-  function handleCheckoutSubmit(e) {
-    e.preventDefault();
-    const status = document.getElementById("statusMsg");
-    status.textContent = "";
-    status.className = "status-msg";
-
-    if (cart.length === 0) {
-      status.textContent = "Please add at least one part to the cart before ordering.";
-      status.classList.add("status-error");
-      return;
-    }
-
-    const name = document.getElementById("custName").value.trim();
-    const phone = document.getElementById("custPhone").value.trim();
-    const address = document.getElementById("custAddress").value.trim();
-    const note = document.getElementById("custNote").value.trim();
-
-    if (!name || !phone || !address) {
-      status.textContent = "Name, phone and address are required.";
-      status.classList.add("status-error");
-      return;
-    }
-
-    const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-
-    let message = "New Order – KAIVAL KRUPA ELECTRIC BIKE WORLD%0A%0A";
-    message += "*Customer Details*%0A";
-    message += "Name: " + encodeURIComponent(name) + "%0A";
-    message += "Phone: " + encodeURIComponent(phone) + "%0A";
-    message += "Address: " + encodeURIComponent(address) + "%0A";
-    if (note) {
-      message += "Note: " + encodeURIComponent(note) + "%0A";
-    }
-    message += "%0A*Items Ordered*%0A";
-
-    cart.forEach((item, idx) => {
-      message +=
-        encodeURIComponent(
-          (idx + 1) +
-            ". " +
-            item.name +
-            " | Qty: " +
-            item.qty +
-            " | Price: " +
-            formatCurrency(item.price)
-        ) + "%0A";
-    });
-
-    message += "%0A*Total Amount:* " + encodeURIComponent(formatCurrency(total));
-
-    const url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + message;
-
-    // Show thank you message before redirecting
-    status.textContent =
-      "Thank you for ordering with KAIVAL KRUPA ELECTRIC BIKE WORLD! WhatsApp will open now. Please review and send your order.";
-    status.classList.add("status-success");
-
-    // Clear cart visually
-    cart = [];
-    renderCart();
-
-    // Open WhatsApp in new tab/window
-    window.open(url, "_blank");
-  }
-
-  // ---------- ADMIN ----------
-  function promptAdminPassword() {
-    if (adminUnlocked) {
-      showAdminSection(true);
-      return;
-    }
-    const pwd = window.prompt("Enter admin password to manage parts:");
-    // Simple demo password (change it if you like)
-    if (pwd === "kk@admin") {
-      adminUnlocked = true;
-      alert("Admin access granted.");
-      showAdminSection(true);
-    } else if (pwd !== null) {
-      alert("Incorrect password.");
-      showAdminSection(false);
-    }
-  }
-
-  function showAdminSection(show) {
-    const adminSection = document.getElementById("adminSection");
-    const shopSection = document.getElementById("shopSection");
-    if (show) {
-      adminSection.style.display = "block";
-      shopSection.style.display = "none";
-    } else {
-      adminSection.style.display = "none";
-      shopSection.style.display = "block";
-    }
-  }
-
-  function handleAdminFormSubmit(e) {
-    e.preventDefault();
-    const idField = document.getElementById("partId");
-    const nameField = document.getElementById("partName");
-    const catField = document.getElementById("partCategory");
-    const priceField = document.getElementById("partPrice");
-    const imageField = document.getElementById("partImage");
-    const descField = document.getElementById("partDesc");
-
-    const name = nameField.value.trim();
-    const price = parseFloat(priceField.value || "0");
-    const category = catField.value.trim() || "General";
-    const image = imageField.value.trim();
-    const desc = descField.value.trim();
-
-    if (!name || isNaN(price) || price <= 0) {
-      alert("Please enter a valid name and price.");
-      return;
-    }
-
-    if (idField.value) {
-      // update existing
-      const idx = products.findIndex((p) => p.id === idField.value);
-      if (idx >= 0) {
-        products[idx].name = name;
-        products[idx].category = category;
-        products[idx].price = price;
-        products[idx].image = image;
-        products[idx].desc = desc;
-      }
-    } else {
-      // create new id
-      const newId = "P" + String(Date.now()).slice(-6);
-      products.push({
-        id: newId,
-        name,
-        category,
-        price,
-        image,
-        desc
-      });
-    }
-
-    saveProductsToStorage();
-    renderProducts();
-    populateCategoryFilter();
-    renderAdminList();
-    resetAdminForm();
-  }
-
-  function resetAdminForm() {
-    document.getElementById("partId").value = "";
-    document.getElementById("adminForm").reset();
-  }
-
-  function renderAdminList() {
-    const list = document.getElementById("adminList");
-    list.innerHTML = "";
-    if (!products.length) {
-      list.innerHTML =
-        '<div style="font-size:0.8rem; color:#9ca3af;">No parts saved yet.</div>';
-      return;
-    }
-
-    products.forEach((p) => {
-      const row = document.createElement("div");
-      row.className = "admin-item";
-      row.innerHTML = `
-        <div>
-          <div style="font-weight:500;">${p.name}</div>
-          <div style="font-size:0.72rem; color:#9ca3af;">
-            ${p.category || "EV Part"} • ${formatCurrency(p.price)}
-          </div>
-          <div style="font-size:0.7rem; color:#6b7280; margin-top:0.15rem;">
-            ${p.desc || ""}
-          </div>
-        </div>
-        <div class="admin-item-actions">
-          <button class="btn btn-outline btn-sm" type="button">✏ Edit</button>
-          <button class="btn btn-outline btn-sm" type="button">🗑 Delete</button>
-        </div>
-      `;
-
-      const [editBtn, delBtn] = row.querySelectorAll("button");
-      editBtn.addEventListener("click", () => fillAdminFormForEdit(p.id));
-      delBtn.addEventListener("click", () => deleteProduct(p.id));
-
-      list.appendChild(row);
-    });
-  }
-
-  function fillAdminFormForEdit(id) {
-    const p = products.find((x) => x.id === id);
-    if (!p) return;
-    document.getElementById("partId").value = p.id;
-    document.getElementById("partName").value = p.name;
-    document.getElementById("partCategory").value = p.category || "";
-    document.getElementById("partPrice").value = p.price;
-    document.getElementById("partImage").value = p.image || "";
-    document.getElementById("partDesc").value = p.desc || "";
-  }
-
-  function deleteProduct(id) {
-    if (!confirm("Delete this part permanently?")) return;
-    products = products.filter((p) => p.id !== id);
-    saveProductsToStorage();
-    renderProducts();
-    populateCategoryFilter();
-    renderAdminList();
-  }
-
-  // ---------- NAV ----------
-  function attachNavHandlers() {
-    document
-      .getElementById("navShopBtn")
-      .addEventListener("click", () => showAdminSection(false));
-    document
-      .getElementById("navAdminBtn")
-      .addEventListener("click", promptAdminPassword);
-  }
-
-  // ---------- INIT ----------
-  function init() {
-    document.getElementById("yearSpan").textContent =
-      new Date().getFullYear();
-
-    loadProductsFromStorage();
-    populateCategoryFilter();
-    renderProducts();
-    renderCart();
-    renderAdminList();
-
-    document
-      .getElementById("searchInput")
-      .addEventListener("input", renderProducts);
-    document
-      .getElementById("categoryFilter")
-      .addEventListener("change", renderProducts);
-    document
-      .getElementById("checkoutForm")
-      .addEventListener("submit", handleCheckoutSubmit);
-    document
-      .getElementById("adminForm")
-      .addEventListener("submit", handleAdminFormSubmit);
-    document
-      .getElementById("adminResetBtn")
-      .addEventListener("click", resetAdminForm);
-
-    attachNavHandlers();
-  }
-
-  document.addEventListener("DOMContentLoaded", init);
-</script>
+        // Initialize
+        displayProducts();
+        // Set first icon as selected by default
+        document.querySelector('.icon-option').classList.add('selected');
+    </script>
 </body>
 </html>
